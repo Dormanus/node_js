@@ -1,4 +1,5 @@
 const Post = require('../models/postModel');
+const LoremIpsum = require("lorem-ipsum");
 
 exports.list_all_posts = (req, res) => {
     Post.find({}, (error, posts) => {
@@ -17,7 +18,9 @@ exports.list_all_posts = (req, res) => {
 
 exports.create_a_post = (req, res) => {
     let new_post = new Post(req.body);
-
+    if(!new_post.content){
+        new_post.content = LoremIpsum();
+    }
     new_post.save((error, post) => {
         if (error) {
             res.status(500);
