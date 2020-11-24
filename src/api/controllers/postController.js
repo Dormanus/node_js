@@ -62,7 +62,7 @@ exports.update_a_post = (req, res) => {
     })
 }
 
-exports.delet_a_post = (req, res) => {
+exports.delete_a_post = (req, res) => {
     Post.findByIdAndRemove(req.params.post_id, (error, post) => {
         if (error) {
             res.status(500);
